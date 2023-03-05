@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        
+        <nav>
+            <% if(all_projects.length>0){%>
+                <h1>Here is the list of all previous projects</h1>
+                <h1>No. of previous project :- <span style="display: inline-block; width: 2rem; background-color: rgb(36, 32, 32); border-radius: 5px;"><%= all_projects.length %></span></h1>
+
+            <%}else{%>
+                <h1>No projects to show, Click on create button to create a project </h1>
+            <%}%>
+            
+
+            <a href="/project/create">
+                <button id="create-project-btn">Create Project</button>
+            </a>
+        </nav>
+        <main>
+
+            <% for(let project of all_projects){%>
+                
+            <div class="individual">
+                <div class="details">
+                    <p>Project Name :- <span><%=project.name%></span> </p>
+                    <p>Description :- <span><%=project.description%></span> </p>
+                    <p>Author :- <span><%=project.author%></span> </p>
+                </div>
+                <div class="delete-project-btn">
+                    <a href="/project/delete/<%=project._id%>">
+                        <button>
+                            Delete Project
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+
+            <%}%>
+
+
+        </main>
+
+    </body>
+</html>

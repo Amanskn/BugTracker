@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" href="/css/project_create.css">
+    </head>
+    <body>
+        
+        <nav>
+            <h1>Create a new project</h1>
+            <abbr title="Go to home page">
+                <a href="/">
+                    <button id="create-project-btn">Home</button>
+                </a>
+            </abbr>
+        </nav>
+
+        <main>
+            <form action="/project/submit" method="post">
+                <label for="name-input">Name of the project : </label>
+                <input type="text" id="name-input" name="name" placeholder="Name of the project..." required>
+                <label for="des-input">Description of the project :</label>
+                <input type="text" id="des-input" name="description" placeholder="Description..." required>
+                <label for="author-input">Author name :</label>
+                <input type="text" id="author-input" name="author" placeholder="Author name..." required>
+                <input type="submit">
+            </form>
+        </main>
+
+    </body>
+</html>
