@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" href="/css/project_details.css">
+
+
+    </head>
+    <body>
+        
+        <nav>
+            <h1>
+                 Count of total issue on this project is :- <span><%=issues.length%></span>
+            </h1>
+            <a href="/issue/create/<%= project._id%>">
+                <button id="create-project-btn">Create Issue</button>
+            </a>
+            <a href="/">
+                <button id="create-project-btn">Home</button>
+            </a>
+        </nav>
+        <main>
+
+            <div id="project-detail-container">
+                <p>Project Name :- <span><%=project.name%></span> </p>
+                <p>Description :- <span><%=project.description%></span> </p>
+                <p>Author :- <span><%=project.author%></span> </p>
+            </div>
+            <div id="issue-filter-container">
+                <div id="issues-container">
+
+                    <% for(issue of issues){%>
+                        <div class="individual">
+    
+                            <div class="details">
+                                <p>Issue title :- <span><%=issue.title%></span></p>
+                                <p>Issue description :- <span><%=issue.description%></span></p>
+                                <p>Issue label :- <span><%=issue.label%></span></p>
+                                <p>Issue author :- <span><%=issue.author%></span></p>
+                            </div>
+                            <div class="delete-issue-btn">
+                                <a href="/issue/delete/<%=issue._id%>">
+                                    <button>
+                                        Delete Issue
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    <%}%>
+    
+                </div>
+                <% if(issues.length>0){%>
+                <div id="search-container">
+                    <form action="issue/filter/?id=<%=project._id%>" method="post">
+                        
+                        
+                            <div id="labels-div">
+                                <label for="labels">Filter by multiple Label</label>
+                                <br>
+                                <abbr title="Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.">
+                                    <select name="labels" id="labels" multiple size="2">
+                                        <% for(issue of issues){%>
+                                            <option value="<%=issue.label%>"><%=issue.label%></option>
+                                         <%}%>   
+                                    </select>
+                                </abbr>
+                            </div>
+    
+                            <div id="authors-div">
+                                <label for="authors">Filter by multiple authors</label>
+                                <br>
+                                <abbr title="Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.">
+                                    <select name="labels" id="authors" multiple size="2">
+                                        <% for(issue of issues){%>
+                                            <option value="<%=issue.author%>"><%=issue.author%></option>
+                                        <%}%>   
+                                    </select>
+                                </abbr>
+                            </div>
+    
+                            <div id="title-des-div">
+                                <input type="text" name="title-description-input" placeholder="Serach by title or description...">
+                            </div>
+    
+                            <div id="apply-div">
+                                <input type="submit" value="Apply">
+                            </div>
+                        
+    
+                       
+    
+                    </form>
+                    
+                </div>
+                <%}%>
+    
+            </div>
+        </main>
+    </body>
+</html>

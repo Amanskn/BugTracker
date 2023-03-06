@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" href="/css/project_create.css">
+    </head>
+    <body>
+        
+        <nav>
+            <h1>Create a new issue for the project : <span style="   background-color: rgb(36, 32, 32);
+                padding: 0px 5px;
+                border-radius: 5px;"><%=project.name%></span></h1>
+            <abbr title="Go to home page">
+                <a href="/">
+                    <button id="create-project-btn">Home</button>
+                </a>
+            </abbr>
+        </nav>
+
+        <main>
+            <form action="/issue/submit" method="post">
+                <label for="title-input">Title of the issue : </label>
+                <input type="text" id="title-input" name="title" placeholder="Title of the issue..." required>
+
+                <label for="des-input">Description of the issue :</label>
+                <input type="text" id="des-input" name="description" placeholder="Description..." required>
+
+                <label for="labels-input">Labels for the issue :</label>
+                <input type="text" id="labels-input" name="label" placeholder="Labels..." required>
+
+                <label for="author-input">Author name :</label>
+                <input type="text" id="author-input" name="author" placeholder="Author name..." required>
+
+                <input type="hidden" name="project" value="<%=project._id%>">
+                <input type="submit">
+            </form>
+        </main>
+
+    </body>
+</html>
