@@ -45,3 +45,67 @@ module.exports.deleteIssue = async function(req,res){
     return res.redirect('back');
     
 }
+
+
+module.exports.filterIssue = async function(req,res){
+    console.log("Inside controller");
+    try{
+        let id = req.query.id;
+        let project = await Project.findById(id);
+        console.log("The project name is ",project.name);
+        console.log("labels selected are",req.body.labels);
+        if(req.body.labels){
+            let issues = await Issue.find({label:{$in: req.body.labels}});
+            return res.render('project_details',{
+                title:'ProjectDetails',
+                project:project,
+                issues:issues
+            });
+        }
+        else if(req.body.authors){
+            let issues = await Issue.find({author:{$in: req.body.authors}});
+            return res.render('project_details',{
+                title:'ProjectDetails',
+                project:project,
+                issues:issues
+            });
+        }
+        else if(req.body.title){
+            let issues = await Issue.find({
+                $or: [
+                    { title: req.body.title },
+                    { description: req.body.title }
+                ]
+            });
+            if(issues.length>0){
+                return res.render('project_details',{
+                    title:'ProjectDetails',
+                    project:project,
+                    issues:issues
+                });
+
+            }
+            return res.status(200).json({
+                message:`Sorry no issue with the specified title/description = ${req.body.title} is found:)`
+            });
+            
+        }
+        else{
+            return res.redirect(`/project/details/?id=${project._id}`);    
+            // return res.status(200).json({
+            //     message:"no input"
+            // })
+        }
+    }catch(err){
+        console.log("Inside catch ",err);
+        return res.status(200).json({
+            message:'Error',
+            error:err
+        })
+    }
+
+    
+
+
+    
+}

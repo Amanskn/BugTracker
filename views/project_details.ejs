@@ -53,7 +53,7 @@
                 </div>
                 <% if(issues.length>0){%>
                 <div id="search-container">
-                    <form action="issue/filter/?id=<%=project._id%>" method="post">
+                    <form action="/issue/filter/?id=<%=project._id%>" method="post">
                         
                         
                             <div id="labels-div">
@@ -72,7 +72,7 @@
                                 <label for="authors">Filter by multiple authors</label>
                                 <br>
                                 <abbr title="Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.">
-                                    <select name="labels" id="authors" multiple size="2">
+                                    <select name="authors" id="authors" multiple size="2">
                                         <% for(issue of issues){%>
                                             <option value="<%=issue.author%>"><%=issue.author%></option>
                                         <%}%>   
@@ -81,7 +81,7 @@
                             </div>
     
                             <div id="title-des-div">
-                                <input type="text" name="title-description-input" placeholder="Serach by title or description...">
+                                <input type="text" name="title" placeholder="Serach by title or description...">
                             </div>
     
                             <div id="apply-div">

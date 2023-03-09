@@ -196,11 +196,11 @@ main>#issue-filter-container>#search-container>form>#labels-div select , main>#i
 
 }
 main>#issue-filter-container>#search-container>form>#labels-div select:focus{
-    outline :none;
+    outline: 2px solid rgb(15, 161, 161) ;
     width: 90%;
 }
 main>#issue-filter-container>#search-container>form>#authors-div select:focus{
-    outline :none;
+    outline: 2px solid rgb(15, 161, 161) ;
     width: 90%;
 }
 main>#issue-filter-container>#search-container>form>#apply-div input{
